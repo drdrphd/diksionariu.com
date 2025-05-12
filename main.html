@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Diksionårion CHamoru</title>
+	<meta name="description" content="Online version of the Guam Official CHamoru-English Dictionary">
+	<meta name="keywords" content="CHamoru, CHamorro, dictionary, diksionariu, diksionario, diksionåriu, diksionårio, language, grammar, fino, fino', morphology, morphological, analysis, affixation, affix, Guam, Guahan, linguistics">
+	<meta name="author" content="Entries from Department of CHamoru Affairs, coordinated by Katherine Augon">
+	<meta name="contributor" content="dr²">
+	<link rel="shortcut icon" 	 href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/site-icon.png" />
+	<link rel="icon"             href="/site-icon.png" />
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" type="text/css" href="/dict_v046a.css">
+	<link rel="stylesheet" type="text/css" href="/examples_v046a.css">
+	
+</head>
+<body>
+	<div id="ribbon">
+		<a class="current">Diksionåriu</a>
+		<a href="https://diksionariu.com/advanced.html">Advanced</a>
+	</div>
+	
+	<div id="search-container" class="container">
+		<div class="content">
+			<div id="user-input">
+				<div id="search-entry-and-button">
+					<div id="search-and-dropdown">
+						<input type="text" id="entry" placeholder="Aligao i finiho' guini"><button id="entry-submit" class="submit"> </button>
+						<div id="search-dropdown" class="hidden">
+							<ul class="search-dropdown-suggest-mobile"></ul>
+							<ul class="search-dropdown-links"></ul>
+							<ul class="search-dropdown-suggest"></ul>
+						</div>
+					</div>
+				</div>
+				<div id="search-tabs">
+					<div class="search-tab current">CH → Eng</div>
+					<div class="search-tab">Eng → CH</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="main-page-block">
+	
+		<div id="main-page-wotd" class="container">
+			<div class="content">
+				<h1>Finiho' Ha'åni</h1>
+				<div id="wotd-textbox">
+					<div class="content">
+						<!-- PHP WOTD insert here -->
+						<!-- PHP quote-out start -->
+						<a href='taotao'>
+							<div class="wotd">taotao</div>
+							<div class="wotd-sub">Definitions & More</div>
+						</a>
+						<!-- PHP quote-out end -->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="main-page-browse" class="container">
+			<div class="content">
+				<h1>Browse</h1>
+				<div id="browse-letters">[A-Z]</div>
+			</div>
+		</div>
+		
+		<div id="main-page-search-guide" class="container">
+			<div class="content">
+				<h1>Search Guide</h1>
+				<div class="card1">
+					<h3>Wildcard Searches</h3>
+					<div>
+						<b>*</b> = any number of characters<br />
+						<div style="padding: .25em 0 1em 1em">
+							<a href="han*">han<b>*</b></a> → starts with "han..."<br />
+							<a href="*anao"><b>*</b>anao</a> → ends with "...anao"<br />
+							<a href="fan*yan">fan<b>*</b>yan</a> → starts with "fan...", ends in "...yan"
+						</div>
+					</div>
+					<div>
+						? = one character<br />
+						<div style="padding: .25em 0 1em 1em">
+							<a href="pott%3F">pott<b>?</b></a> → "pott<b>a</b>", "pott<b>e</b>", "pott<b>o</b>"<br />
+							<a href="%3Fokse"><b>?</b>okse</a> → "<b>f</b>okse", "<b>h</b>okse"
+						</div>
+					</div>
+					<div>
+						~ = fuzzy search<br />
+						<div style="padding: .25em 0 1em 1em">
+							<a href="konbetsa≈">konbetsa<b>~</b></a> → (Fuzzy Search for similar spellings)
+						</div>
+					</div>
+					<div>
+						# = breakdowns<br />
+						<div style="padding: .25em 0 1em 1em">
+							<a href="%23mangguaiya"><b>#</b>mangguaiya</a> → (Try to break word into morphemes)
+						</div>
+					</div>
+					<p>Basic search ignores dash (-) and glotta ('). Wildcard searches are sensitive to these characters.</p><br />
+					<h3>Compound Searches</h3>
+					<div>
+						<b>:</b> →  Searches of the form [query]:[meaning]<br />
+						<div style="padding: .25em 0 1em 1em">
+							<a href="t*%3Afish">t* <b>:</b> fish</a> → words starting with 't' related to 'fish'<br />
+							<a href="*'*%3Apure">*'* <b>:</b> pure</a> → words with a glotta, with 'pure' in the definition
+						</div>
+						<b>::</b> →  Searches of the form [query]::[example]<br />
+						<div style="padding: .25em 0 1em 1em">
+							<a href="*%3A%3Aenao na">* <b>::</b> enao na</a> → any entry that has 'enao na' in the example<br />
+							<a href="%3Fin*%3A%3A%3F para u %3F">?in* <b>::</b> ? para u ?</a> → entry with 'in' after a letter, with 'para u' between other words
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="main-page-learn" class="container">
+			<div class="content">
+				<div class="flex">
+					<div class="flex1">
+						<h1>Learn</h1>
+						<div class="main-text">Interested in learning CHamoru? Check out <a href="https://learningchamoru.com">LearningCHamoru.com</a></div>
+					</div>
+					<a class="flex1" href="https://learningchamoru.com"><img class="flex2" src="/images/learningchamoru.svg"></a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<div id="footer" class="container">
+		<a href="about.html">About</a>
+		<a href="https://bsky.app/profile/diksionariu.bsky.social"><img class="social" src="/images/bluesky.svg"> Socials</a>
+	</div>
+	
+	<!-- cache morphology scripts for later use -->
+	<script src="morph_affixes_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_non-aff-wds_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_parse_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_rules_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_tries_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_words_v036.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="/main-ui_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/search_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/examples_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/templates_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<!-- PHP inserts code here -->
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Diksionårion CHamoru</title>
+	<meta name="description" content="Online version of the Guam Official CHamoru-English Dictionary">
+	<meta name="keywords" content="CHamoru, CHamorro, dictionary, diksionariu, diksionario, diksionåriu, diksionårio, language, grammar, fino, fino', morphology, morphological, analysis, affixation, affix, Guam, Guahan, linguistics">
+	<meta name="author" content="Entries from Department of CHamoru Affairs, coordinated by Katherine Augon">
+	<meta name="contributor" content="dr²">
+	<link rel="shortcut icon" 	 href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/site-icon.png" />
+	<link rel="icon"             href="/site-icon.png" />
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" type="text/css" href="/dict_v046a.css">
+	
+</head>
+<body>
+	<div id="ribbon">
+		<a class="current" href="https://diksionariu.com">Diksionåriu</a>
+		<a href="https://diksionariu.com/advanced.html" >Advanced</a>
+	</div>
+	
+	<div id="search-container" class="container">
+		<div class="content">
+			<div id="user-input">
+				<div id="search-entry-and-button">
+					<div id="search-and-dropdown">
+						<input type="text" id="entry" placeholder="Aligao i finiho' guini"><button id="entry-submit" class="submit"> </button>
+						<div id="search-dropdown" class="hidden">
+							<ul class="search-dropdown-suggest-mobile"></ul>
+							<ul class="search-dropdown-links"></ul>
+							<ul class="search-dropdown-suggest"></ul>
+						</div>
+					</div>
+				</div>
+				<div id="search-tabs">
+					<div class="search-tab current">CH → Eng</div>
+					<div class="search-tab">Eng → CH</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="main-page-block">
+	
+		<div class="container">
+			<div class="content"></br>
+				<div class="flex">
+					<div class="flex1">
+						<h1>About</h1>
+						<div class="main-text">The starting point for this site is the dictionary published by the Department of CHamoru Affairs, which was co‑ordinated by Katherine Augon. This work is publically funded and belongs to the people.</br>
+						</br>
+						Etymologies are often sourced from Wiktionary or Blust & Trussel's <i>Austronesian Comparative Dictionary</i>. Some entries are based on other dictionaries, and should be sourced per entry. Other entries and corrections provided by this site are public domain; no rights are reserved.</br>
+						</br></br>
+						Full dataset may be downloaded here (may take a moment to assemble): <a id="full-download">diksionariu.csv</a><a class="loading hidden" id="download-spinner"> </a>
+						</div>
+					</div>
+					<div class="flex1"><img class="flex2" src="/images/dca-diksionariu-cover.jpg"></div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="content">
+				<h1>Support</h1>
+				<div class="main-text">This site was independently constructed. However, while working on it, the developers were partially supported by or collaborated with the following:</div></br></br>
+				<div class="flex">
+					<div class="flex3"><a href="https://chachalani.com"><img class="flex4" src="/images/chachalani-logo.png"></a></div>
+					<div class="flex3"><a href="https://kumisionchamoru.guam.gov/"><img class="flex4" src="/images/kumision-logo-sq.jpg"></a></div>
+					<div class="flex3"><a href="https://dca.guam.gov/"><img class="flex4" src="/images/dca-logo.png"></a></div>
+					<div class="flex3"><a href="https://www.gdoe.net/"><img class="flex4" src="/images/gdoe-logo.png"></a></div>
+					<div class="flex3"><a href="https://uog.edu/"><img class="flex4" src="/images/uog-logo-sq.png"></a></div>
+					<div class="flex3"><a href="https://www.nsf.gov/"><img class="flex4" src="/images/nsf-logo.png"></a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="footer" class="container">
+		<a href="about.html">About</a>
+		<a href="https://bsky.app/profile/diksionariu.bsky.social"><img class="social" src="/images/bluesky.svg"> Socials</a>
+	</div>
+	
+	<!-- cache morphology scripts for later use -->
+	<script src="morph_affixes_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_non-aff-wds_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_parse_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_rules_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_tries_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_words_v036.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="/main-ui_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/get-csv_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/templates_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/search_v046a.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

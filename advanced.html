@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Diksionåriu - Advanced Search</title>
+	<meta name="description" content="Diksionariu.com - Advanced Search">
+	<meta name="contributor" content="dr²">
+	<link rel="shortcut icon" 	 href="/favicon.ico" />
+	<link rel="apple-touch-icon" href="/site-icon.png" />
+	<link rel="icon"             href="/site-icon.png" />
+	<meta name="viewport" content="width=device-width">
+	<meta name="robots" content="none">
+
+	<link rel="stylesheet" type="text/css" href="/dict_v046a.css">
+	<link rel="stylesheet" type="text/css" href="/examples_v046a.css">
+	
+</head>
+<body>
+	<div id="ribbon">
+		<a href="https://diksionariu.com/">Diksionåriu</a>
+		<a class="current">Advanced</a>
+	</div>
+	
+	<div id="advanced-search-container" class="container">
+		<div class="content">
+			<div id="advanced-search-block">
+				<div class="advanced-search-form">
+					<div class="column">
+						<label for="entry-text" class="search-label">Entry</label><br />
+						<input type="text" id="entry-text" name="entry-text" class="search-input"><br />
+						<label for="alternate-forms" class="search-label">Alternate Spellings</label><br />
+						<input type="text" id="alternate-forms" name="alternate-forms" class="search-input"><br />
+						<label for="definition" class="search-label">Definition</label><br />
+						<input id="definition" name="definition" class="search-input"><br />
+						<label for="examples" class="search-label">Examples</label><br />
+						<input id="examples" name="examples" class="search-input"><br />
+						<label for="part-of-speech" class="search-label">Part of Speech</label><br />
+						<select id="part-of-speech" name="part-of-speech" class="search-input">
+							<option value=""></option>
+							<option value="Adjective">Adjective</option>
+							<option value="Adverb">Adverb</option>
+							<option value="Affix">Affix</option>
+							<option value="Classifier">Classifier</option>
+							<option value="Conjunction">Conjunction</option>
+							<option value="Determiner">Determiner</option>
+							<option value="Interjection">Interjection</option>
+							<option value="Noun">Noun</option>
+							<option value="Numeral">Numeral</option>
+							<option value="Particle">Particle</option>
+							<option value="Phrase">Phrase</option>
+							<option value="Preposition">Preposition</option>
+							<option value="Pronoun">Pronoun</option>
+							<option value="Verb">Verb</option>
+						</select><br />
+						<label for="origin" class="search-label">Origin</label><br />
+						<input type="text" id="origin" name="origin" class="search-input"><br />
+					</div>
+					<div class="column">
+						<label for="related-forms" class="search-label">Related Forms<br />(words with the same root)</label><br />
+						<input type="text" id="related-forms" name="related-forms" class="search-input"><br />
+						<label for="see-also" class="search-label">See also<br />(synonyms, etc.)</label><br />
+						<input type="text" id="see-also" name="see-also" class="search-input"><br />
+						<label for="notes" class="search-label">Notes<br />(usage notes, (m/f), dial., vulg., ...)</label><br />
+						<input type="text" id="notes" name="notes" class="search-input"><br />					
+						<label for="source" class="search-label">Source<br />(DCA Dictionary, etc.)</label><br />
+						<input type="text" id="source" name="source" class="search-input"><br />
+						<input type="checkbox" id="contextual-example" name="contextual-example" class="search-checkbox">
+						<label for="contextual-example" class="search-label">Contextual Example</label><br /><br />
+						<button id="advanced-search-button" class="submit">Search</button>
+						<button id="clear-button">Clear</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<div id="advanced-results-container" class="container">
+		<div id="results" class="content">
+			<div id="feedback">
+			</div>
+			<div id="search-explanation">
+				<h2>Advanced Search Options</h2>
+				<p>Use wildcards in any of the blanks. These will work in the main search page, as well:</p>
+				<div>
+					<b>*</b> = any number of characters<br />
+					<div style="padding: .25em 0 1em 1em">
+						han<b>*</b> → starts with "han..."<br />
+						<b>*</b>anao → ends with "...anao"<br />
+						fan<b>*</b>yan → starts with "fan...", ends in "...yan"
+					</div>
+				</div>
+				<div>
+					? = one character<br />
+					<div style="padding: .25em 0 1em 1em">
+						pott<b>?</b> → "pott<b>a</b>", "pott<b>e</b>", "pott<b>o</b>"<br />
+						<b>?</b>okse → "<b>f</b>okse", "<b>h</b>okse"
+					</div>
+				</div>
+				<p>Basic search ignores dash (-) and glotta ('). Wildcard searches are sensitive to these characters.</p>
+				<p>Most blanks search for entries that <i>contain</i> that term.<br />Example: <i>hamyo</i> in 'Examples' returns entries with <i>hamyo</i> anywhere in the example text.</p>
+				<p>'Entry' however, is exact by default.<br />Example: <i>ham</i> in 'Entry' returns <i>ham</i>, but not <i>hami</i> unless you include wildcards (for example: <i>ham*</i>)</p>
+			</div>
+		</div>
+	</div>
+	
+	<div id="hover-preview-popup" class="hidden">
+		<div class="results">
+			<div class="load">
+			</div>
+		</div>
+	</div>
+	
+	<div id="footer" class="container">
+		<a href="about.html">About</a>
+		<a href="https://bsky.app/profile/diksionariu.bsky.social"><img class="social" src="/images/bluesky.svg"> Socials</a>
+	</div>
+	
+	<!-- cache morphology scripts for later use -->
+	<script src="morph_affixes_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_non-aff-wds_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_parse_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_rules_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_tries_v036.js" type="text/javascript" charset="utf-8"></script>
+	<script src="morph_words_v036.js" type="text/javascript" charset="utf-8"></script>
+	
+	<script src="/advanced-ui_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/search_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/templates_v046a.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/examples_v046a.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
