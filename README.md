@@ -28,7 +28,7 @@ Includes:
  -- Compound Search
   * Entry:Definition
   * Entry::Example
-- Morphological Stemming / Parsing tools
+- Morphological Stemming / Parsing tools (developed in parallel, so has different version numbers)
 - Hover Pop-up for lookups & morphology
 - Wikipedia-similar formatting for markdown
  -- ```~~italics~~``` for *italics*
