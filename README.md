@@ -22,19 +22,19 @@ Work in progress, so some elements may be buggy.
 Includes:
 
 - Search
- -- Basic Search (including wildcard and alternate fields)
- -- Advanced Search (all fields)
- -- Fuzzy Search (using a modified Levenshtein distance)
- -- Compound Search
-  * Entry:Definition
-  * Entry::Example
+  - Basic Search (including wildcard and alternate fields)
+  - Advanced Search (all fields)
+  - Fuzzy Search (using a modified Levenshtein distance)
+  - Compound Search
+    * Entry:Definition
+    * Entry::Example
 - Morphological Stemming / Parsing tools (developed in parallel, so has different version numbers)
 - Hover Pop-up for lookups & morphology
 - Wikipedia-similar formatting for markdown
- -- ```~~italics~~``` for *italics*
- -- ```'''bold'''``` for **bold**
- -- ```[[link]]``` for internal links, or
- -- ```[[link|url]]``` for external links
+  - ```~~italics~~``` for *italics*
+  - ```'''bold'''``` for **bold**
+  - ```[[link]]``` for internal links, or
+  - ```[[link|url]]``` for external links
 - Integrated Audio examples from our documentation project, [chachalani.com](https://chachalani.com/)
 - Word of the Day (*Finiho' Ha'åni*) with special formatting
 
