@@ -1,0 +1,6 @@
+<?PHP
+	define('DB_SERVER', '[where on your server to access your databases]');
+	define('DB_USER', '[username for database]');
+	define('DB_PASS', '[password for database]');
+	define('DB_NAME', '[database name]');
+?>
