@@ -431,7 +431,15 @@ function printDerivations(q, parses, popup=false) {
 						temp_deriv += a_open
 							+ encodeURIComponent("-um-") + `">`
 							+ m.morpheme_value + `</a>.`;
-					} else {	//everything else
+					} else if (m.morpheme_type == "PFX" || m.morpheme_type == "CFXPFX") {	//Prefixes, add - after morpheme
+						temp_deriv += a_open
+							+ encodeURIComponent(m.morpheme_value + "-") + `">`
+							+ m.morpheme_value + `</a>.`;
+					} else if (m.morpheme_type == "SFX" || m.morpheme_type == "CFXSFX") {	//Suffixes, add - before morpheme
+						temp_deriv += a_open
+							+ encodeURIComponent("-" + m.morpheme_value) + `">`
+							+ m.morpheme_value + `</a>.`;
+					} else {	//everything else ... shouldn't get here, but just in case
 						temp_deriv += a_open
 							+ encodeURIComponent(m.morpheme_value) + `">`
 							+ m.morpheme_value + `</a>.`;
