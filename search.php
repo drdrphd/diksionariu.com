@@ -26,7 +26,7 @@
 	
 	header('Content-Type: text/html; charset=utf-8');
 	$hashed_entry = (isset($_GET['e'])) ? strval($_GET['e']) : false;	//required by search_b.php
-	require './search_b.php';	//defines: DB_SERVER, DB_USER, DB_PASS, DB_NAME
+	require './search_b.php';
 	
 	// Load the results.html template into a variable
 	ob_start();
@@ -35,7 +35,7 @@
 	$insert_code = "";
 	
 	
-	$db_connect = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+	$db_connect = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, "diksionariu");
 
 	//if can't connect to SQL, give error code, output html, and exit
 	if (mysqli_connect_errno()) {
@@ -370,12 +370,23 @@
 					REPLACE('%[[" . $q2 .  "]]%', \"'\", ''),
 					\"-\", '')";
 			
-		//as above, if query contains wildcards, allow ' and -
+		// as above, if query contains wildcards, allow ' and -
+		//
+		// One special issue here is that wildcard searches may overflow the [[...]] bounds
+		// for example, searching for "*w*" will match
+		// [[gonggong]] (mud wasp), Syn. [[sasata]] (bee)
+		// because it finds the 'w' in 'wasp'
+		// To counter this, use regex and replace * and ?  (% and _)
+		// with regex captures that are anything except [ or ]
+		// Also, use triple escape codes (\\\) to account for:
+		// 		(1) PHP parser, (2) MariaDB parser, and (3) regex parser
 		if ($has_special) {
+			$q3 = str_replace("%","([^\\\[\\\]]*)",$q2);		//regex replacements -- anything that is not a [
+			$q3 = str_replace("_","([^\\\[\\\]])",$q3);
 			$sql = "SELECT * FROM diksionariu
-						WHERE alternate_forms LIKE '%[[" . $q2 . "]]%'
-						OR related_forms LIKE '%[[" . $q2 . "]]%'
-						OR see_also LIKE '%[[" . $q2 . "]]%'";
+						WHERE alternate_forms RLIKE '.*\\\[\\\[" . $q3 . "\\\]\\\].*'
+						OR related_forms RLIKE '.*\\\[\\\[" . $q3 . "\\\]\\\].*'
+						OR see_also RLIKE '.*\\\[\\\[" . $q3 . "\\\]\\\].*'";
 		}
 		
 		$result = mysqli_query($db_connect, $sql);
@@ -390,7 +401,7 @@
 			
 			$insert_code = $insert_code . '<script>displayCHAltResults("' . $q . '",' . json_encode($results_array) . ');</script>';
 			
-			// free up the memory from the result set
+			//free up the memory from the result set
 			mysqli_free_result($result);
 			
 			return true;
