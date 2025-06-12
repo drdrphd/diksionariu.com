@@ -1,4 +1,3 @@
-
 # diksionariu.com
 
 Source code of [diksionariu.com](https://diksionariu.com/), an online CHamoru-English dictionary
