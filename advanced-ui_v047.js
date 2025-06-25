@@ -37,29 +37,29 @@ var page_settings = {
 };
 
 
-//Setup global retrieval trie objects
-//(for Morphological parsing)
+// Setup global retrieval trie objects
+// (for Morphological parsing)
 var tries = {};
 tries.words = new Trie();
 tries.non_aff_words = new Trie();	//non-affixing words (mostly small function words)
 tries.affixes = new Trie();
 	
-//add words to word_trie
-//Creates Trie with deaccented forms...
-//but includes accented forms at end nodes in properties
-//	Tries are fast but fairly rigid...
-//	methods to allow other characters are complicated or lengthy
-//	We'll deaccent and then possibly filter at the end
+// add words to word_trie
+// Creates Trie with deaccented forms...
+// but includes accented forms at end nodes in properties
+// 	Tries are fast but fairly rigid...
+// 	methods to allow other characters are complicated or lengthy
+// 	We'll deaccent and then possibly filter at the end
 for (var i = 0; i < words.length; i++) {
 	tries.words.insert(deaccent(words[i].split("/", 1)[0].toLowerCase()), words[i]);
 }
 
-//add words to non_affixing_word_trie
+// add words to non_affixing_word_trie
 for (var i = 0; i < non_affixing_words.length; i++) {
 	tries.non_aff_words.insert(deaccent(non_affixing_words[i].split("/", 1)[0].toLowerCase()), non_affixing_words[i]);
 }
 
-//add affixes to affix_trie
+// add affixes to affix_trie
 for (var i = 0; i < affixes.length; i++) {
 	tries.affixes.insert(deaccent(affixes[i].add.split("/", 1)[0].toLowerCase()), affixes[i]);
 }
@@ -114,8 +114,8 @@ window.onload = function(){
 		document.getElementById("contextual-example").checked = false;
 	});
 	
-	//For internal links and example text in results div (if extant)
-	//pop-up a preview on link hover (after delay - 500ms)
+	// For internal links and example text in results div (if extant)
+	// pop-up a preview on link hover (after delay - 500ms)
 	if (results_div) {
 		results_div.addEventListener('mouseover', (event) => {
 			if (event.target.closest('.internal-link')) {
@@ -147,9 +147,9 @@ window.onload = function(){
 		});
 	}
 
-	//For internal links in results div (if extant)
-	//Clear pop-up timer when leaving hovered link,
-	//but wait a small delay (100ms)to get in pop-up bounds
+	// For internal links in results div (if extant)
+	// Clear pop-up timer when leaving hovered link,
+	// but wait a small delay (100ms)to get in pop-up bounds
 	if (results_div) {
 		results_div.addEventListener('mouseout', (event) => {
 			if (event.target.classList.contains('internal-link')) {
@@ -164,7 +164,7 @@ window.onload = function(){
 		});
 	}
 
-	//Hide pop-up when not hovered (if it exists)
+	// Hide pop-up when not hovered (if it exists)
 	if (hover_preview_popup) {
 		hover_preview_popup.addEventListener('mouseleave', () => {
 			hide(hover_preview_popup);
@@ -172,8 +172,8 @@ window.onload = function(){
 		});
 	}
 
-	//For internal links in popup div (if extant)
-	//redirect preview on link hover (after delay - 750ms)
+	// For internal links in popup div (if extant)
+	// redirect preview on link hover (after delay - 750ms)
 	if (hover_preview_popup) {
 		hover_preview_popup.addEventListener('mouseover', (event) => {
 			if (event.target.classList.contains('popup-link')) {
@@ -185,7 +185,7 @@ window.onload = function(){
 			}
 		});
 	}
-	//clear popup link timer on mouseout
+	// clear popup link timer on mouseout
 	if (hover_preview_popup) {
 		hover_preview_popup.addEventListener('mouseout', (event) => {
 			if (event.target.classList.contains('popup-link')) {
@@ -231,15 +231,15 @@ window.onload = function(){
 	//
 	function formatForPopup(q, results) {
 		
-		//helper function to deaccent text and remove ' -
+		// helper function to deaccent text and remove ' -
 		function norm(str) {
 			str = str.normalize("NFD").replace(/[\u0300-\u036f'\-]/g, "");  //NFD : Canonical Unicode Decomposition
 			str = str.toLowerCase();
 			return str;
 		}
 		
-		//helper function for formatting result text
-		//(match_type can be 'exact' or 'alts')
+		// helper function for formatting result text
+		// (match_type can be 'exact' or 'alts')
 		function formatText(arr, match_type) {
 			var formatted = "";	//to assemble and return
 			arr = arr.sort((a, b) => a.entry.localeCompare(b.entry))	//sort by entry alphabetically
@@ -272,9 +272,9 @@ window.onload = function(){
 			return formatted;
 		}
 		
-		//helper function for markup in results
-		//Sliiiiightly different from seach.js replaceMarkup() in that the links are of a different class
-		//Probably could just add a parameter to the other one to designate popup or not... maybe if files are combined
+		// helper function for markup in results
+		// Sliiiiightly different from seach.js replaceMarkup() in that the links are of a different class
+		// Probably could just add a parameter to the other one to designate popup or not... maybe if files are combined
 		function markupText(str) {
 	
 			//swap out '''...''' for §, and then § for <b>...</b> tags
