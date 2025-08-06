@@ -14,11 +14,13 @@
 	<meta name="googlebot" content="notranslate">
 	<meta name="google" value="notranslate">
 
-	<link rel="stylesheet" type="text/css" href="/dict_v047.css">
-	<link rel="stylesheet" type="text/css" href="/examples_v047.css">
+	<link rel="stylesheet" type="text/css" href="/dict_v049.css">
+	<link rel="stylesheet" type="text/css" href="/examples_v049.css">
 	
 </head>
 <body>
+	<div class="underbody"></div>	<!-- prevents color bleed on rubber-banding -->
+	
 	<div id="ribbon">
 		<a href="https://diksionariu.com" class="current">Diksionåriu</a>
 		<a href="https://diksionariu.com/advanced.html">Advanced</a>
@@ -44,14 +46,16 @@
 			</div>
 		</div>
 	</div>
-	
-	<div id="results-container" class="container">
+
+	<div id="results-page-block">
 		<div class="content">
-			<div id="results">
-				<span class="loading">Searching . . .</span>
-				<!------------------------------>
-				<!-- Results from PHP go here -->
-				<!------------------------------>
+			<div id="results-container" class="container">
+				<div id="results">
+					<span class="loading">Searching . . .</span>
+					<!------------------------------>
+					<!-- Results from PHP go here -->
+					<!------------------------------>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -75,10 +79,10 @@
 	<script src="morph_tries_v037.js" type="text/javascript" charset="utf-8"></script>
 	<script src="morph_words_v037.js" type="text/javascript" charset="utf-8"></script>
 	
-	<script src="/main-ui_v047.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/search_v047.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/templates_v047.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/examples_v047.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/main-ui_v049.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/search_v049.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/templates_v049.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/examples_v049.js" type="text/javascript" charset="utf-8"></script>
 	<!-- PHP inserts code here -->
 </body>
 </html>

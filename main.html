@@ -14,11 +14,13 @@
 	<meta name="googlebot" content="notranslate">
 	<meta name="google" value="notranslate">
 
-	<link rel="stylesheet" type="text/css" href="/dict_v047.css">
-	<link rel="stylesheet" type="text/css" href="/examples_v047.css">
+	<link rel="stylesheet" type="text/css" href="/dict_v049.css">
+	<link rel="stylesheet" type="text/css" href="/examples_v049.css">
 	
 </head>
 <body>
+	<div class="underbody"></div>	<!-- prevents color bleed on rubber-banding -->
+	
 	<div id="ribbon">
 		<a class="current">Diksionåriu</a>
 		<a href="https://diksionariu.com/advanced.html">Advanced</a>
@@ -46,9 +48,9 @@
 	</div>
 	
 	<div id="main-page-block">
-	
-		<div id="main-page-wotd" class="container">
-			<div class="content">
+		<div class="content">
+			
+			<div id="main-page-wotd" class="container">
 				<h1>Finiho' Ha'åni</h1>
 				<div id="wotd-textbox">
 					<div class="content">
@@ -62,17 +64,39 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
-		<div id="main-page-browse" class="container">
-			<div class="content">
-				<h1>Browse</h1>
-				<div id="browse-letters">[A-Z]</div>
+			
+			<div id="main-page-news" class="container">
+				<div class="content">
+					<h1>News</h1>
+					<div class="main-text">
+						Bot traffic is slowing down the site!<br />
+						<br />
+						The amount of bot traffic last month was up more than 3x. We are trying to figure out ways to counter this without making the site less user friendly.
+					</div>
+				</div>
 			</div>
-		</div>
+
+			<div id="main-page-about" class="container">
+				<div class="flex">
+					<div class="flex1">
+						<h1>About</h1>
+						<div class="main-text">
+							Online CHamoru-English Dictionary (Guam dialect)<br />
+							<br />
+							Updated from the Department of CHamoru Affairs dictionary, co‑ordinated by Katherine Augon.<br />
+							<br />
+							Now in partnership with the <a href="https://kumisionchamoru.guam.gov/">Kumisión i Fino’ CHamoru yan i Fina’nå’guen i Historia yan i Lina’la’ i Taotao Tåno’.</a><br />
+							<br />
+							More info: <a href="about.html">here</a>
+						</div>
+					</div>
+					<a href="https://kumisionchamoru.guam.gov/">
+						<img class="flex3" src="images/kumision-logo-sq.jpg">
+					</a>
+				</div>
+			</div>
 		
-		<div id="main-page-search-guide" class="container">
-			<div class="content">
+			<div id="main-page-search-guide" class="container">
 				<h1>Search Guide</h1>
 				<div class="card1">
 					<h3>Wildcard Searches</h3>
@@ -119,20 +143,23 @@
 					</div>
 				</div>
 			</div>
-		</div>
 		
-		<div id="main-page-learn" class="container">
-			<div class="content">
+			<div id="main-page-browse" class="container">
+				<h1>Browse</h1>
+				<div id="browse-letters">[A-Z]</div>
+			</div>
+		
+			<div id="main-page-learn" class="container">
 				<div class="flex">
 					<div class="flex1">
 						<h1>Learn</h1>
 						<div class="main-text">Interested in learning CHamoru? Check out <a href="https://learningchamoru.com">LearningCHamoru.com</a></div>
 					</div>
-					<a class="flex1" href="https://learningchamoru.com"><img class="flex2" src="/images/learningchamoru.svg"></a>
+					<a class="flex1 flex1-2" href="https://learningchamoru.com"><img class="flex2" src="images/learningchamoru.svg"></a>
 				</div>
 			</div>
-		</div>
 		
+		</div>
 	</div>
 	
 	<div id="footer" class="container">
@@ -141,17 +168,17 @@
 	</div>
 	
 	<!-- cache morphology scripts for later use -->
-	<script src="morph_affixes_v037.js" type="text/javascript" charset="utf-8"></script>
-	<script src="morph_non-aff-wds_v037.js" type="text/javascript" charset="utf-8"></script>
-	<script src="morph_parse_v037.js" type="text/javascript" charset="utf-8"></script>
-	<script src="morph_rules_v037.js" type="text/javascript" charset="utf-8"></script>
-	<script src="morph_tries_v037.js" type="text/javascript" charset="utf-8"></script>
-	<script src="morph_words_v037.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/morph_affixes_v037.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/morph_non-aff-wds_v037.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/morph_parse_v037.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/morph_rules_v037.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/morph_tries_v037.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/morph_words_v037.js" type="text/javascript" charset="utf-8"></script>
 	
-	<script src="/main-ui_v047.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/search_v047.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/examples_v047.js" type="text/javascript" charset="utf-8"></script>
-	<script src="/templates_v047.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/main-ui_v049.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/search_v049.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/examples_v049.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/templates_v049.js" type="text/javascript" charset="utf-8"></script>
 	<!-- PHP inserts code here -->
 </body>
 </html>
