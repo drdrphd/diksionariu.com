@@ -647,7 +647,6 @@ function displayCHResults(q, results, message = "", all_words = [], type = "") {
 				}
 			);
 			entry_list = [...new Set(entry_list)];
-			console.log(entry_list);
 			
 			// if there is only one unique result...
 			// replace the <title> tag with the search-result spelling
