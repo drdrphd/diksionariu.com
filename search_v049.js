@@ -577,9 +577,9 @@ function displayCHResults(q, results, message = "", all_words = [], type = "") {
 		return str;
 	}
 	
-	
 	// Hold formatted results	
 	var formatted_results = "" + message;
+	
 	
 	// If SQL returns "0" (entry not found)
 	if (results == "0") {
@@ -614,6 +614,7 @@ function displayCHResults(q, results, message = "", all_words = [], type = "") {
 		}
 	}
 	
+	
 	// Results found
 	if (results != "0") {
 		
@@ -637,9 +638,19 @@ function displayCHResults(q, results, message = "", all_words = [], type = "") {
 		// Non-wildcard, display results, starting with exact matches to search string
 		} else {
 			
-			// if there is only one result...
+			// Get list of all entries and alternate-forms
+			var entry_list = results.map(i => i.entry);
+			var alt_entries = JSON.stringify(results.map(i => i.alternate_forms));	// get string, then regex it to get all [[...]] values
+			alt_entries.replace(/(\[\[[^\[]*\]\])/g,	//regex:  [[ + (anything that's not '[') + ]]
+				function(match) {
+					entry_list.push(lnk = match.slice(2,-2));
+				}
+			);
+			entry_list = [...new Set(entry_list)];
+			
+			// if there is only one unique result...
 			// replace the <title> tag with the search-result spelling
-			if (results.length == 1) {
+			if (entry_list.length == 1) {
 				document.getElementsByTagName("title")[0].innerHTML = results[0].entry + " - Diksionårion CHamoru";
 			}
 			
@@ -648,8 +659,13 @@ function displayCHResults(q, results, message = "", all_words = [], type = "") {
 				formatted_results = "<zz class='redirect-text'>(Redirected from <a href='" + q + "'>" + q + ")</a></zz>";
 				formatted_results += formatSingleResult(results[0]);
 			
+			// Or if just a single unique result, just display
+			} else if (entry_list.length == 1) {
+				for (var i = 0; i < results.length; i++) {
+					formatted_results += formatSingleResult(results[i]);
+				}
 			
-			// If not just one Alternate Form result...
+			// If not just one result...
 			} else {
 			
 				// We will be re-sorting the results
@@ -671,8 +687,6 @@ function displayCHResults(q, results, message = "", all_words = [], type = "") {
 					for (var i = 0; i < res_exact.length; i++) {
 						formatted_results += formatSingleResult(res_exact[i]);
 					}
-				} else {
-					formatted_results = "<h2>" + q + "</h2>" + "<p class='no-result'>Entry not found</p><br /><br />";
 				}
 				if (res_alts.length > 0) {
 					formatted_results += "<h3 class='close-match-header'>Alternate Form matches:</h3>";
