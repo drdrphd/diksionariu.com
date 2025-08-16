@@ -226,7 +226,7 @@
 	//*****************************************************		
 	function search_examples()
 	{
-		global $db_connect, $insert_code, $specials, $sitename, $q, $q2;
+		global $db_connect, $insert_code, $specials, $diacritic, $sitename, $q, $q2;
 		
 		// save current search in page_settings to correctly show what was searched in the search box on the results page
 		// take the query from the PHP address and place in the search entry box on the results page
@@ -457,12 +457,12 @@
 	}
 
 
-	//*****************************************************
+	//**************************************************************
 	// Search Partial Matches
 	// (CHamoru) (Multiple-results)
 	// 
 	// If no results from related fields
-	// Search 'entry' for partial matches
+	// Search 'lookup' in the lookup table for partial matches
 	//	- entries that contain the search term
 	//	- entries contained in the search term
 	// assuming at least 4 characters in the search query and entry
@@ -471,20 +471,20 @@
 	// Wildcard search is literal
 	//
 	// Returns:
-	//	- list of partial-matched 'entry' values
+	//	- list of partial-matched 'lookup' values
 	// 	- return_all_words() -- for fuzzy search
-	//*****************************************************	
+	//**************************************************************
 	function search_partial()
 	{
 		global $db_connect, $insert_code, $has_special, $q, $q2;
 		
 		// ignore apostrophes and dashes
-		$sql = "SELECT DISTINCT entry FROM diksionariu "
-			. "WHERE CHAR_LENGTH(entry) > 3 "
+		$sql = "SELECT lookup, field FROM lookup "
+			. "WHERE CHAR_LENGTH(lookup) > 3 "
 			. "AND CHAR_LENGTH('" . $q2 . "') > 3 "
 			. "AND REPLACE(REPLACE('" . $q2 . "', '\'', ''), '-', '') "
-			. "LIKE CONCAT('%',REPLACE(REPLACE(entry, '\'', ''), '-', ''),'%') "
-			. "OR REPLACE(REPLACE(entry, '\'', ''), '-', '') "
+			. "LIKE CONCAT('%',REPLACE(REPLACE(lookup, '\'', ''), '-', ''),'%') "
+			. "OR REPLACE(REPLACE(lookup, '\'', ''), '-', '') "
 			. "LIKE REPLACE(REPLACE('%" . $q2 . "%', '\'', ''), '-', '')";
 		
 		// if query contains space ' ' (phrases), include the exploded terms
@@ -492,25 +492,25 @@
 			$words = explode(' ',$q2);	//split query into words
 			$words_sql = "";
 			foreach ($words as $word) {
-				$words_sql .= "entry LIKE '" . $word . "' OR ";			//TODO -- is this correct? Final OR? maybe replace with: implode
+				$words_sql .= "lookup LIKE '" . $word . "' OR ";			//TODO -- is this correct? Final OR? maybe replace with: implode
 			}
-			$sql = "SELECT DISTINCT entry FROM diksionariu "
+			$sql = "SELECT lookup, field FROM lookup "
 				. "WHERE " . $words_sql
-				. "CHAR_LENGTH(entry) > 3 "
+				. "CHAR_LENGTH(lookup) > 3 "
 				. "AND CHAR_LENGTH('" . $q2 . "') > 3 "
 				. "AND REPLACE(REPLACE('" . $q2 . "', '\'', ''), '-', '') "
-				. "LIKE CONCAT('%',REPLACE(REPLACE(entry, '\'', ''), '-', ''),'%') "
-				. "OR REPLACE(REPLACE(entry, '\'', ''), '-', '') "
+				. "LIKE CONCAT('%',REPLACE(REPLACE(lookup, '\'', ''), '-', ''),'%') "
+				. "OR REPLACE(REPLACE(lookup, '\'', ''), '-', '') "
 				. "LIKE REPLACE(REPLACE('%" . $q2 . "%', '\'', ''), '-', '')";
 		}
 		
 		// if query contains special characters, allow ' and -
 		if ($has_special) {
-			$sql = "SELECT DISTINCT entry FROM diksionariu "
-				. "WHERE CHAR_LENGTH(entry) > 3 "
+			$sql = "SELECT lookup, field FROM lookup "
+				. "WHERE CHAR_LENGTH(lookup) > 3 "
 				. "AND CHAR_LENGTH('" . $q2 . "') > 3 "
-				. "AND ( '" . $q2 . "' LIKE CONCAT('%', entry, '%') "
-				. "OR entry LIKE '%" . $q2 . "%' )";
+				. "AND ( '" . $q2 . "' LIKE CONCAT('%', lookup, '%') "
+				. "OR lookup LIKE '%" . $q2 . "%' )";
 		}
 		
 		$result = mysqli_query($db_connect, $sql);

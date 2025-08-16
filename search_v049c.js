@@ -106,7 +106,10 @@ function advSearch() {
 //
 // Fuzzy search
 //
-// fuzzySearch(string, JSON_array)
+// fuzzySearch(string, JSON_array, bool)
+//		string = query
+//		JSON_array = SQL results
+//		bool = long_list (false: return 10 reults; true: return 20)
 //
 // Takes: search string (may contain '~')
 //		  array of all entries and words from links [[..]] (lookup table)
@@ -770,6 +773,7 @@ function displayCHAltResults(str, results) {
 	//handle markup: remove ''' ... ''' (leave ~~italics~~ and [[links]])	<- [[.|.]] links are problematic
 	//(for alternate results, we just trim it out)
 	for (var i = 0; i < results.length; i++) {
+		results[i].alternate_forms 	= replaceMarkup(results[i].alternate_forms	.replaceAll("'''",""));
 		results[i].related_forms 	= replaceMarkup(results[i].related_forms	.replaceAll("'''",""));
 		results[i].see_also			= replaceMarkup(results[i].see_also			.replaceAll("'''",""));
 		results[i].definition 		= replaceMarkup(results[i].definition);
@@ -818,7 +822,14 @@ function displayCHAltResults(str, results) {
 //	  second JSON_array = lookup table (all words and t/f main entry)
 //		
 // Description:
-//	  Results return no exact entry match, but query matches part of an entry
+//	  Results return no exact entry match,
+//		but query matches part of an entry
+//		or entry matches part of query
+//	  NOTE: This function pulls from the lookup table,
+//		NOT the usualy diciontary table
+//		Results in form of [[lookup],[field]],
+//		where [field] is either "entry" or "non-entry"
+//
 // Returns:
 //	  --
 // Method:
@@ -836,24 +847,34 @@ function displayCHPartialResults(str, results, all_words) {
 	formatted_results += "<div class='partial-container'>"
 							+ "<div class='partial-subcontainer'>"
 								+ "<h3>Partial matches</h3>"
-								+ "<div class='partial-results'>";
+								+ "<div class='partial-results'>";	
 	
 	//sort results by length similarity to search string
-	results.sort((a,b) => Math.abs(a.entry.length - str.length) - Math.abs(b.entry.length - str.length));
+	results.sort((a,b) => Math.abs(a.lookup.length - str.length) - Math.abs(b.lookup.length - str.length));
 	
-	//form links and highlight the search terms
+	//form links and highlight the search terms on first (up to) 10 links
 	for (var i = 0; i < Math.min(results.length, 10); i++) {
 		var highlighted = "";
-		if (results[i].entry.length > str.length) {
-			highlighted = addHighlights(results[i].entry, str);
+		// highlight query when query is a substring of result
+		if (results[i].lookup.length > str.length) {
+			highlighted = addHighlights(results[i].lookup, str);
+			highlighted = highlighted.replaceAll("<xx cl","<xx href='" + encodeURIComponent(results[i].lookup) + "' cl");
 		} else { 
-			highlighted = results[i].entry;
+			highlighted = results[i].lookup;
 		}
 		
-		formatted_results += "<div class='partial-match'>"
-								+ "• <a class='internal-link' href=\"" + encodeURIComponent(results[i].entry) + "\">"
+		// assemble lines, bolding lines that are from the 'entry' fields
+		if (results[i].field == "entry") {
+			formatted_results += "<div class='partial-match'><b>"
+								+ "• <a class='internal-link' href=\"" + encodeURIComponent(results[i].lookup) + "\">"
+									+ highlighted
+								+ "</a></b></div>";
+		} else {
+			formatted_results += "<div class='partial-match'>"
+								+ "• <a class='internal-link' href=\"" + encodeURIComponent(results[i].lookup) + "\">"
 									+ highlighted
 								+ "</a></div>";
+		}
 	}
 	
 	if (results.length > 10) {
