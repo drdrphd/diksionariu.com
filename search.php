@@ -66,9 +66,9 @@
 	
 	
 	// sanitize
-	$q2 = mb_convert_encoding($q, "UTF-8");
-	$q2 = str_replace(['‘', '’'], "'", $q2);		// change all curly apostrophes to regular apostrophes
-	$q2 = preg_replace('/[^0-9a-zA-ZÅÁÉÍÓÚáéíóúåÑñ \.\-\'*?≈#:]+/', ' ', $q2);	// Only take alphanumeric, lona', n-tilde, accented letters, space, period, dash, glotta, and wildcards * ? ~ # :
+	$q  = mb_convert_encoding($q, "UTF-8");
+	$q  = str_replace(['‘', '’'], "'", $q);		// change all curly apostrophes to regular apostrophes
+	$q2 = preg_replace('/[^0-9a-zA-ZÅÁÉÍÓÚáéíóúåÑñ \.\-\'*?≈#:]+/', ' ', $q);	// Reduce copy: only take alphanumeric, lona', n-tilde, accented letters, space, period, dash, glotta, and wildcards * ? ~ # :
 	$q2 = str_replace("'","''",$q2);	// escape-code apostrophes
 	
 	// change wildcards to the appropriate SQL wildcards
@@ -361,7 +361,7 @@
 				. "ORDER BY CAST(index_num AS UNSIGNED)";
 		}
 		
-		
+
 		$result = mysqli_query($db_connect, $sql);
 		$results_array = array();
 		
